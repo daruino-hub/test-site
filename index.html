@@ -1,14 +1,12 @@
-HTML
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DARU_I-NO | Official Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        /* --- (중략) 기본 설정은 이전과 동일합니다 --- */
+        /* --- 기본 설정 (Ver 5.0과 동일) --- */
         :root {
             --primary-red: #ff003c;
             --bg-black: #0a0a0a;
@@ -17,10 +15,8 @@ HTML
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: var(--bg-black);
-            color: var(--text-white);
-            font-family: 'Roboto', sans-serif;
-            overflow-x: hidden;
+            background-color: var(--bg-black); color: var(--text-white);
+            font-family: 'Roboto', sans-serif; overflow-x: hidden;
         }
         a { text-decoration: none; color: white; transition: 0.3s; }
         ul { list-style: none; }
@@ -47,17 +43,11 @@ HTML
             color: var(--primary-red); transform: skew(-10deg); text-align: center;
         }
 
-        /* --- [수정된 부분] HERO 섹션: 타이틀 위치 변경 --- */
+        /* --- HOME 섹션 (위치 조정 유지) --- */
         #home {
             background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('image_0.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            
-            /* 핵심 변경: 컨텐츠를 아래쪽으로 정렬 */
-            justify-content: flex-end; 
-            /* 아래쪽 패딩 추가 */
-            padding-bottom: 80px; 
+            background-size: cover; background-position: center; background-attachment: fixed;
+            justify-content: flex-end; padding-bottom: 80px; 
         }
         .hero-title {
             font-family: 'Anton', sans-serif; font-size: 8vw; line-height: 0.9;
@@ -72,28 +62,80 @@ HTML
             opacity: 0; animation: fadeIn 1.5s ease-out 1s forwards; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* --- 나머지 섹션 (이전과 동일) --- */
-        #live-stream {
-            background: var(--gray-dark); min-height: auto; padding: 100px 10%; align-items: center;
+        /* --- [수정됨] CAREER 섹션: 타임라인 디자인 --- */
+        #career {
+            background: var(--gray-dark); border-top: 5px solid var(--primary-red);
+            padding: 100px 10%; min-height: auto; /* 타임라인 내용에 맞게 높이 조정 */
         }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* 타임라인 중앙 세로선 */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-red);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            transition: all 1s;
+        }
+        .container.left { left: 0; }
+        .container.right { left: 50%; }
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: black;
+            border: 4px solid var(--primary-red);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .container.right::after {
+            left: -16px;
+        }
+        .content {
+            padding: 20px 30px;
+            background-color: black;
+            position: relative;
+            border-radius: 6px;
+            border: 1px solid var(--gray-dark);
+        }
+        .content h3 { color: var(--primary-red); margin-bottom: 5px; }
+        .content h4 { font-size: 1.8rem; font-family: 'Anton', sans-serif; margin-bottom: 5px; }
+
+        /* 모바일용 타임라인 조정 */
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container.right { left: 0%; }
+            .container.left::after, .container.right::after { left: 15px; }
+            .container.left { padding-right: 25px; }
+        }
+
+        /* --- 나머지 섹션 (이전과 동일) --- */
+        #live-stream { background: var(--gray-dark); min-height: auto; padding: 100px 10%; align-items: center; }
         .video-wrapper {
             position: relative; padding-bottom: 56.25%; height: 0; width: 100%; max-width: 900px;
-            border: 3px solid var(--primary-red); box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
-            background: black;
+            border: 3px solid var(--primary-red); box-shadow: 0 0 20px rgba(255, 0, 60, 0.3); background: black;
         }
-        .video-wrapper iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         #about { background-color: var(--bg-black); align-items: center; text-align: center; }
         .about-text { font-size: 1.5rem; max-width: 800px; color: #ccc; line-height: 1.6; }
-        #career { background: var(--gray-dark); border-top: 5px solid var(--primary-red); }
-        .career-card {
-            background: black; padding: 40px; margin: 20px 0;
-            border-left: 10px solid var(--primary-red); transition: transform 0.3s;
-        }
-        .career-card:hover { transform: translateX(20px); }
-        .career-year { font-size: 1.2rem; color: var(--primary-red); font-weight: bold; }
-        .career-detail { font-size: 2.5rem; font-family: 'Anton', sans-serif; text-transform: uppercase; }
         #contact { background: black; text-align: center; }
         .btn {
             display: inline-block; margin-top: 30px; padding: 15px 40px;
@@ -130,7 +172,7 @@ HTML
             The World's Best<br>
             <span>DARU_I-NO</span>
         </h1>
-        <p class="hero-subtitle">Professional Guilty Gear Player | EVO Japan 2025 Champion</p>
+        <p class="hero-subtitle">Professional Fighting Game Competitor</p>
     </section>
 
     <section id="live-stream">
@@ -154,23 +196,72 @@ HTML
     <section id="about">
         <h2 class="section-title fade-up">THE CRIMSON WITCH</h2>
         <p class="about-text fade-up">
-            "예측 불가능한 셋업, 숨 막히는 압박."<br>
-            전 세계에서 이노(I-NO)를 가장 완벽하게 다루는 플레이어.<br>
-            단순한 승리를 넘어, 가장 스타일리시한 경기를 선사합니다.
+            "Unpredictable setups, breathtaking pressure."<br>
+            The world's most dominant I-NO player.<br>
+            I don't just win; I deliver the most stylish and impactful matches in Guilty Gear.
         </p>
     </section>
 
     <section id="career">
         <h2 class="section-title fade-up">DOMINATION</h2>
-        <div class="career-card fade-up">
-            <span class="career-year">2025</span>
-            <div class="career-detail">EVO Japan Champion</div>
-            <p>Guilty Gear -Strive-</p>
-        </div>
-        <div class="career-card fade-up">
-            <span class="career-year">2023</span>
-            <div class="career-detail">EVO Top 3</div>
-            <p>Guilty Gear -Strive-</p>
+        
+        <div class="timeline">
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2025 (1st Place)</h3>
+                    <h4>EVO Japan 2025</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2024 (3rd Place)</h3>
+                    <h4>CEO 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2023 (5th Place)</h3>
+                    <h4>EVO 2023</h4>
+                    <p>Guilty Gear -Strive- (S-Tier)</p>
+                </div>
+            </div>
+            
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2023 (2nd Place)</h3>
+                    <h4>CEO 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2023 (4th Place)</h3>
+                    <h4>Combo Breaker 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2022 (2nd Place)</h3>
+                    <h4>CEO 2022</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2022 (4th Place)</h3>
+                    <h4>Frosty Faustings XIV</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -195,7 +286,7 @@ HTML
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-up').forEach((el) => {
+        document.querySelectorAll('.fade-up, .container').forEach((el) => {
             observer.observe(el);
         });
     </script>
