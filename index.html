@@ -6,7 +6,7 @@
     <title>DARU_I-NO | Official Portfolio</title>
     <link href="https://fonts.com/css2?family=Anton&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 기본 설정 (Ver 8.0 기반) --- */
+        /* --- 기본 설정 (Ver 9.0과 동일) --- */
         :root {
             --primary-red: #ff003c;
             --bg-black: #0a0a0a;
@@ -19,19 +19,18 @@
         body {
             background-color: var(--bg-black); color: var(--text-white);
             font-family: 'Roboto', sans-serif; overflow-x: hidden;
-            /* 1. 웹사이트 전체 최대 너비를 1920px로 제한 */
             max-width: 1920px; 
-            margin: 0 auto; /* 중앙 정렬 */
+            margin: 0 auto; 
         }
         a { text-decoration: none; color: white; transition: 0.3s; }
         ul { list-style: none; }
         nav {
-            position: fixed; top: 0; width: 100%; max-width: 1920px; /* nav도 제한 */
+            position: fixed; top: 0; width: 100%; max-width: 1920px; 
             padding: 20px 50px;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; background: linear-gradient(to top, transparent, rgba(0,0,0,0.9));
             left: 50%;
-            transform: translateX(-50%); /* 중앙 정렬 */
+            transform: translateX(-50%);
         }
         .logo {
             font-family: 'Anton', sans-serif; font-size: 1.5rem; letter-spacing: 2px;
@@ -51,7 +50,7 @@
             color: var(--primary-red); transform: skew(-10deg); text-align: center;
         }
 
-        /* --- HOME 섹션 (1. 타이틀 최대 크기 제한) --- */
+        /* --- HOME 섹션 --- */
         #home {
             background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('image_0.png');
             background-size: cover; background-position: center; background-attachment: fixed;
@@ -59,7 +58,7 @@
         }
         .hero-title {
             font-family: 'Anton', sans-serif; 
-            font-size: min(8vw, 100px); /* 8vw 또는 최대 100px 중 작은 값 적용 */
+            font-size: min(8vw, 100px); 
             line-height: 0.9;
             text-transform: uppercase; color: transparent;
             -webkit-text-stroke: 2px white; position: relative; z-index: 1;
@@ -72,7 +71,7 @@
             opacity: 0; animation: fadeIn 1.5s ease-out 1s forwards; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* --- LIVE 섹션 (16:9 비율 고정 유지) --- */
+        /* --- LIVE 섹션 --- */
         #live-stream { 
             background: var(--gray-dark); min-height: auto; padding: 100px 10%; align-items: center; 
         }
@@ -121,184 +120,4 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         .content h3 { color: var(--primary-red); margin-bottom: 5px; }
-        .content h4 { font-size: 1.8rem; font-family: 'Anton', sans-serif; margin-bottom: 5px; line-height: 1.2; }
-        .content p { font-size: 0.95rem; color: #ccc; }
-
-        /* 1st Place 금색 박스 스타일 */
-        .content.gold {
-            background-color: var(--gold-bg); 
-            border: 3px solid var(--gold-color); 
-            box-shadow: 0 0 15px var(--gold-color);
-        }
-        .content.gold h3, .content.gold h4 {
-            color: var(--gold-color); 
-        }
-        .content.gold p {
-            color: #ffe08d;
-        }
-
-        /* 모바일용 타임라인 조정 */
-        @media screen and (max-width: 768px) {
-            .hero-title { font-size: 15vw; }
-            .section-title { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            #live-stream { padding: 50px 5%; }
-            .timeline::after { left: 31px; }
-            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .container.right { left: 0%; }
-            .container.left::after, .container.right::after { left: 15px; }
-            .container.left { padding-right: 25px; }
-            .content h4 { font-size: 1.5rem; }
-        }
-        
-        /* --- 나머지 섹션 (이전과 동일) --- */
-        #about { background-color: var(--bg-black); align-items: center; text-align: center; }
-        .about-text { font-size: 1.5rem; max-width: 800px; color: #ccc; line-height: 1.6; }
-        #contact { background: black; text-align: center; }
-        .btn {
-            display: inline-block; margin-top: 30px; padding: 15px 40px;
-            border: 2px solid var(--primary-red); color: white;
-            font-size: 1.2rem; font-weight: bold; text-transform: uppercase; transition: 0.3s;
-            cursor: pointer; background: transparent;
-        }
-        .btn:hover { background: var(--primary-red); color: black; }
-        @keyframes slideIn { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .fade-up { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="logo">DARU_I-NO">DARU_I-NO</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#live-stream">Live</a>
-            <a href="#about">About</a>
-            <a href="#career">Career</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-
-    <section id="home">
-        <h1 class="hero-title">
-            The World's Best<br>
-            <span>DARU_I-NO</span>
-        </h1>
-        <p class="hero-subtitle">Professional Fighting Game Competitor</p>
-    </section>
-
-    <section id="live-stream">
-        <h2 class="section-title fade-up">LIVE ON AIR</h2>
-        <p class="fade-up" style="margin-bottom: 30px; color: #aaa;">Watch the Crimson Witch in action on Twitch.</p>
-        
-        <div class="video-wrapper fade-up">
-            <iframe
-                src="https://player.twitch.tv/?channel=daruino&parent=daruino-hub.github.io&muted=true&autoplay=false" 
-                height="100%"
-                width="100%"
-                allowfullscreen>
-            </iframe>
-        </div>
-
-        <a href="https://www.youtube.com/c/daru_i-no" target="_blank" class="btn fade-up">
-            VISIT YOUTUBE CHANNEL
-        </a>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title fade-up">THE CRIMSON WITCH</h2>
-        <p class="about-text fade-up">
-            "Unpredictable setups, breathtaking pressure."<br>
-            The world's most dominant I-NO player.<br>
-            I don't just win; I deliver the most stylish and impactful matches in Guilty Gear.
-        </p>
-    </section>
-
-    <section id="career">
-        <h2 class="section-title fade-up">ACHIEVEMENTS</h2>
-        
-        <div class="timeline">
-            <div class="container left fade-up">
-                <div class="content">
-                    <h3>2025.11.02 (4th Place)</h3>
-                    <h4>SOOP Super Tournament 2025</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-            
-            <div class="container right fade-up">
-                <div class="content">
-                    <h3>2025.08.03 (5th - 6th Place)</h3>
-                    <h4>Evolution Championship Series 2025</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-
-            <div class="container left fade-up">
-                <div class="content gold"> <h3>2025.05.10 (1st Place)</h3>
-                    <h4>Evolution Championship Series: Japan 2025</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-
-            <div class="container right fade-up">
-                <div class="content">
-                    <h3>2025.09.23 (7th - 8th Place)</h3>
-                    <h4>ARC World Tour 2024 Finals</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-
-            <div class="container left fade-up">
-                <div class="content">
-                    <h3>2025.01.19 (5th - 6th Place)</h3>
-                    <h4>Cygames Cup Special 2025</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-
-            <div class="container right fade-up">
-                <div class="content gold"> <h3>2024.11.24 (1st Place)</h3>
-                    <h4>South East Asia Major 2024</h4>
-                    <p>Guilty Gear -Strive- (Tier 2)</p>
-                </div>
-            </div>
-            
-            <div class="container left fade-up">
-                <div class="content">
-                    <h3>2024.08.31 (9th - 12th Place)</h3>
-                    <h4>ARCREVO in SENZAN 2024</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title fade-up">NEXT STAGE</h2>
-        <p class="fade-up" style="color:#aaa;">Sponsorship & Business Inquiries</p>
-        <a href="mailto:contact@daru-ino.com" class="btn fade-up">Contact Me</a>
-        <div class="fade-up" style="margin-top: 50px;">
-            <a href="https://www.twitch.tv/daruino" target="_blank" style="margin: 0 15px;">TWITCH</a>
-            <a href="https://www.youtube.com/c/daru_i-no" target="_blank" style="margin: 0 15px;">YOUTUBE</a>
-            <a href="https://twitter.com/daru_ino" target="_blank" style="margin: 0 15px;">TWITTER</a>
-        </div>
-    </section>
-
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-up, .container').forEach((el) => {
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+        .content h4 { font-size: 1.8rem; font-family: 'Anton', sans-serif; margin-bottom: 5px; line-height:
