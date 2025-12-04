@@ -6,7 +6,7 @@
     <title>DARU_I-NO | Official Portfolio</title>
     <link href="https://fonts.com/css2?family=Anton&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 기본 설정 (Ver 9.0과 동일) --- */
+        /* --- 기본 설정 (Ver 9.0 기반) --- */
         :root {
             --primary-red: #ff003c;
             --bg-black: #0a0a0a;
@@ -120,4 +120,205 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         .content h3 { color: var(--primary-red); margin-bottom: 5px; }
-        .content h4 { font-size: 1.8rem; font-family: 'Anton', sans-serif; margin-bottom: 5px; line-height:
+        .content h4 { font-size: 1.8rem; font-family: 'Anton', sans-serif; margin-bottom: 5px; line-height: 1.2; }
+        .content p { font-size: 0.95rem; color: #ccc; }
+
+        /* 1st Place 금색 박스 스타일 */
+        .content.gold {
+            background-color: var(--gold-bg); 
+            border: 3px solid var(--gold-color); 
+            box-shadow: 0 0 15px var(--gold-color);
+        }
+        .content.gold h3, .content.gold h4 {
+            color: var(--gold-color); 
+        }
+        .content.gold p {
+            color: #ffe08d;
+        }
+
+        /* 모바일용 타임라인 조정 */
+        @media screen and (max-width: 768px) {
+            .hero-title { font-size: 15vw; }
+            .section-title { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            #live-stream { padding: 50px 5%; }
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container.right { left: 0%; }
+            .container.left::after, .container.right::after { left: 15px; }
+            .container.left { padding-right: 25px; }
+            .content h4 { font-size: 1.5rem; }
+        }
+        
+        /* --- 나머지 섹션 (이전과 동일) --- */
+        #about { background-color: var(--bg-black); align-items: center; text-align: center; }
+        .about-text { font-size: 1.5rem; max-width: 800px; color: #ccc; line-height: 1.6; }
+        #contact { background: black; text-align: center; }
+        .btn {
+            display: inline-block; margin-top: 30px; padding: 15px 40px;
+            border: 2px solid var(--primary-red); color: white;
+            font-size: 1.2rem; font-weight: bold; text-transform: uppercase; transition: 0.3s;
+            cursor: pointer; background: transparent;
+        }
+        .btn:hover { background: var(--primary-red); color: black; }
+        @keyframes slideIn { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .fade-up { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">DARU_I-NO</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#live-stream">Live</a>
+            <a href="#about">About</a>
+            <a href="#career">Career</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home">
+        <h1 class="hero-title">
+            The World's Best<br>
+            <span>DARU_I-NO</span>
+        </h1>
+        <p class="hero-subtitle">Professional Fighting Game Competitor</p>
+    </section>
+
+    <section id="live-stream">
+        <h2 class="section-title fade-up">LIVE ON AIR</h2>
+        <p class="fade-up" style="margin-bottom: 30px; color: #aaa;">Watch the Crimson Witch in action on Twitch.</p>
+        
+        <div class="video-wrapper fade-up">
+            <iframe
+                src="https://player.twitch.tv/?channel=daruino&parent=daruino-hub.github.io&muted=true&autoplay=false" 
+                height="100%"
+                width="100%"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <a href="https://www.youtube.com/c/daru_i-no" target="_blank" class="btn fade-up">
+            VISIT YOUTUBE CHANNEL
+        </a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title fade-up">THE CRIMSON WITCH</h2>
+        <p class="about-text fade-up">
+            "Unpredictable setups, breathtaking pressure."<br>
+            The world's most dominant I-NO player.<br>
+            I don't just win; I deliver the most stylish and impactful matches in Guilty Gear.
+        </p>
+    </section>
+
+    <section id="career">
+        <h2 class="section-title fade-up">ACHIEVEMENTS</h2>
+        
+        <div class="timeline">
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2025.11.02 (4th Place)</h3>
+                    <h4>SOOP Super Tournament 2025</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2025.08.03 (5th - 6th Place)</h3>
+                    <h4>Evolution Championship Series 2025</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content gold">
+                    <h3>2025.05.10 (1st Place)</h3>
+                    <h4>Evolution Championship Series: Japan 2025</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2025.03.23 (7th - 8th Place)</h3>
+                    <h4>ARC World Tour 2024 Finals</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2025.01.19 (5th - 6th Place)</h3>
+                    <h4>Cygames Cup Special 2025</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container right fade-up">
+                <div class="content gold">
+                    <h3>2024.11.24 (1st Place)</h3>
+                    <h4>South East Asia Major 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 2)</p>
+                </div>
+            </div>
+            
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2024.08.31 (9th - 12th Place)</h3>
+                    <h4>ARCREVO in SENZAN 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2024.07.20 (9th - 12th Place)</h3>
+                    <h4>Evolution Championship Series 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2024.04.29 (13th - 16th Place)</h3>
+                    <h4>Evolution Championship Series: Japan 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2024.03.22 (9th - 12th Place)</h3>
+                    <h4>ARC World Tour 2023 Finals</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content gold">
+                    <h3>2023.10.01 (1st Place)</h3>
+                    <h4>REV Major 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 2)</p>
+                </div>
+            </div>
+            
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2023.09.24 (25th - 32nd Place)</h3>
+                    <h4>ARCREVO Japan 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2023.08.06 (3rd Place)</h3>
+                    <h4>Evolution Championship Series 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class
