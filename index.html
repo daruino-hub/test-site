@@ -15,17 +15,26 @@
             --gold-color: #ffd700;
             --gold-bg: #403200;
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html {
+            background-color: var(--bg-black); /* 초고해상도에서 여백 검게 처리 */
+        }
+
         body {
-            background-color: var(--bg-black); color: var(--text-white);
-            font-family: 'Roboto', sans-serif; overflow-x: hidden;
+            background-color: var(--bg-black); 
+            color: var(--text-white);
+            font-family: 'Roboto', sans-serif; 
+            overflow-x: hidden;
             max-width: 1920px; 
             margin: 0 auto; 
         }
+        
         a { text-decoration: none; color: white; transition: 0.3s; }
         ul { list-style: none; }
         
-        /* [모바일 최적화 수정] NAV: 모바일에서 상단 고정 및 중앙 정렬 개선 */
+        /* NAV: 상단 고정 및 중앙 정렬 */
         nav {
             position: fixed; top: 0; width: 100%; max-width: 1920px; 
             padding: 20px 50px;
@@ -43,18 +52,19 @@
             font-size: 0.9rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;
         }
         .nav-links a:hover { color: var(--primary-red); }
+        
+        /* 섹션 공통 스타일 */
         section {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; padding: 0 10%; position: relative;
+            min-height: 100vh; 
+            display: flex; flex-direction: column;
+            justify-content: center; 
+            padding: 100px 10%; /* 가시성 확보를 위한 충분한 패딩 */
+            position: relative;
         }
         
-        /* [모바일 최적화 수정] 섹션 제목 크기 반응형으로 조정 */
         .section-title {
             font-family: 'Anton', sans-serif; font-size: 4rem; margin-bottom: 20px;
             color: var(--primary-red); transform: skew(-10deg); text-align: center;
-        }
-        @media screen and (max-width: 768px) {
-            .section-title { font-size: 2.5rem; }
         }
 
         /* --- HOME 섹션 --- */
@@ -65,10 +75,11 @@
         }
         .hero-title {
             font-family: 'Anton', sans-serif; 
-            font-size: min(8vw, 100px); /* 반응형 크기 유지 */
+            font-size: min(8vw, 100px); 
             line-height: 0.9;
             text-transform: uppercase; color: transparent;
             -webkit-text-stroke: 2px white; position: relative; z-index: 1;
+            /* 애니메이션 안전장치: 기본 opacity는 0이지만 JS 로드 실패 대비는 아래 스크립트에서 처리 */
             opacity: 0; animation: slideIn 1.5s ease-out forwards;
         }
         .hero-title span { display: block; color: var(--primary-red); -webkit-text-stroke: 0; }
@@ -80,7 +91,10 @@
 
         /* --- ABOUT & LIVE & NOTE 섹션 --- */
         #about, #live-stream, #note { 
-            background-color: var(--bg-black); min-height: auto; padding: 100px 10%; align-items: center; text-align: center;
+            background-color: var(--bg-black); 
+            min-height: auto; 
+            align-items: center; 
+            text-align: center;
         }
         #about .about-text { font-size: 1.5rem; max-width: 800px; color: #ccc; line-height: 1.6; }
 
@@ -98,7 +112,7 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
         }
 
-        /* [모바일 최적화 수정] NOTE 섹션: 모바일에서 카드 세로 정렬 */
+        /* NOTE 섹션 스타일 */
         .note-container {
             display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1200px;
         }
@@ -109,10 +123,6 @@
             border-left: 5px solid var(--primary-red);
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             transition: transform 0.3s, box-shadow 0.3s;
-        }
-        @media screen and (max-width: 768px) {
-            .note-item { width: 100%; max-width: 400px; } /* 모바일에서 폭을 늘려 가독성 확보 */
-            .note-container { gap: 20px; }
         }
         .note-item:hover {
             transform: translateY(-5px);
@@ -131,10 +141,10 @@
         .note-item .note-date { display: block; color: #777; font-size: 0.8rem; margin-top: 5px; }
         .note-loading { color: #aaa; font-size: 1.2rem; }
 
-
         /* --- CAREER 섹션 --- */
         #career {
-            background: var(--gray-dark); border-top: 5px solid var(--primary-red);
+            background: var(--gray-dark); 
+            border-top: 5px solid var(--primary-red);
             padding: 100px 10%; min-height: auto;
         }
         .timeline {
@@ -181,42 +191,30 @@
             color: #ffe08d;
         }
 
-        /* 🚀 [모바일 최적화 수정]: 타임라인을 모바일 환경(768px 이하)에서 단일 컬럼으로 변경 */
+        /* --- 모바일 최적화 (768px 이하) --- */
         @media screen and (max-width: 768px) {
             .hero-title { font-size: 15vw; }
             .section-title { font-size: 2.5rem; }
-            
-            /* 네비게이션 숨기기 (토글 메뉴는 현재 JS가 없으므로 임시로 숨김) */
+            section { padding: 80px 5%; } /* 모바일 패딩 조정 */
+
+            /* 네비게이션 숨김 (추후 햄버거 메뉴 필요) */
             .nav-links { display: none; }
             
-            #live-stream { padding: 50px 5%; }
-            
-            /* 타임라인 축을 왼쪽으로 이동 */
+            .note-item { width: 100%; max-width: 400px; } 
+            .note-container { gap: 20px; }
+
+            /* 타임라인 단일 컬럼화 */
             .timeline::after { left: 31px; }
-            
-            /* 모든 컨테이너를 왼쪽 정렬로 설정 */
-            .container { 
-                width: 100%; 
-                padding-left: 70px; 
-                padding-right: 25px; 
-            }
-            .container.right { left: 0%; } /* 오른쪽 컨테이너도 왼쪽으로 이동 */
+            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container.right { left: 0%; } 
             .container.left { padding-right: 25px; }
+            .container::after, .container.right::after { left: 15px; right: auto; }
             
-            /* 모든 원 마커를 왼쪽 축에 배치 */
-            .container::after, .container.right::after {
-                left: 15px; 
-                right: auto; /* right 속성 무시 */
-            }
-            
-            /* 텍스트 크기 조정 */
             .content h4 { font-size: 1.5rem; }
-            
-            /* 콘택트 링크 간격 조정 */
             #contact a { margin: 0 10px; }
         }
         
-        /* --- 공통 스타일 --- */
+        /* --- CONTACT & 애니메이션 --- */
         #contact { background: black; text-align: center; }
         .btn {
             display: inline-block; margin-top: 30px; padding: 15px 40px;
@@ -225,8 +223,11 @@
             cursor: pointer; background: transparent;
         }
         .btn:hover { background: var(--primary-red); color: black; }
+        
         @keyframes slideIn { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* [중요] 애니메이션 클래스 */
         .fade-up { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
     </style>
 </head>
@@ -302,7 +303,6 @@
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
-            
             <div class="container right fade-up">
                 <div class="content">
                     <h3>2025.08.03 (5th - 6th Place)</h3>
@@ -310,7 +310,6 @@
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
-
             <div class="container left fade-up">
                 <div class="content gold">
                     <h3>2025.05.10 (1st Place)</h3>
@@ -318,7 +317,6 @@
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
-
             <div class="container right fade-up">
                 <div class="content">
                     <h3>2025.03.23 (7th - 8th Place)</h3>
@@ -326,7 +324,222 @@
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
-
             <div class="container left fade-up">
                 <div class="content">
-                    <h3>2025.01.19 (5th -
+                    <h3>2025.01.19 (5th - 6th Place)</h3>
+                    <h4>Cygames Cup Special 2025</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container right fade-up">
+                <div class="content gold">
+                    <h3>2024.11.24 (1st Place)</h3>
+                    <h4>South East Asia Major 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 2)</p>
+                </div>
+            </div>
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2024.08.31 (9th - 12th Place)</h3>
+                    <h4>ARCREVO in SENZAN 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2024.07.20 (9th - 12th Place)</h3>
+                    <h4>Evolution Championship Series 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2024.04.29 (13th - 16th Place)</h3>
+                    <h4>Evolution Championship Series: Japan 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2024.03.22 (9th - 12th Place)</h3>
+                    <h4>ARC World Tour 2023 Finals</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content gold">
+                    <h3>2023.10.01 (1st Place)</h3>
+                    <h4>REV Major 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 2)</p>
+                </div>
+            </div>
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2023.09.24 (25th - 32nd Place)</h3>
+                    <h4>ARCREVO Japan 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2023.08.06 (3rd Place)</h3>
+                    <h4>Evolution Championship Series 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container right fade-up">
+                <div class="content gold">
+                    <h3>2023.06.17 (1st Place)</h3>
+                    <h4>Playstation Tournaments FGC ARCADE: Road to EVO 2023 - APAC Finals</h4>
+                    <p>Guilty Gear -Strive- (Tier 3)</p>
+                </div>
+            </div>
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2023.04.02 (4th Place)</h3>
+                    <h4>Evolution Championship Series: Japan 2023</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2022.12.04 (9th - 12th Place)</h3>
+                    <h4>ARCREVO Japan 2022</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2022.11.13 (3rd Place)</h3>
+                    <h4>Fighter's Spirit 2022</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2022.08.07 (5th - 6th Place)</h3>
+                    <h4>Evolution Championship Series 2022</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2022.02.26 (5th - 6th Place)</h3>
+                    <h4>ARCREVO Japan & Korea 2021</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container right fade-up">
+                <div class="content gold">
+                    <h3>2021.12.16 (1st Place)</h3>
+                    <h4>ICFC Asia Season 2 - Finals</h4>
+                    <p>Guilty Gear -Strive- (Tier 3)</p>
+                </div>
+            </div>
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2021.11.13 (5th - 6th Place)</h3>
+                    <h4>Red Bull Kumite 2021 - Las Vegas</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+            <div class="container right fade-up">
+                <div class="content gold">
+                    <h3>2021.10.30 (1st Place)</h3>
+                    <h4>Guilty Gear Duel Online #1</h4>
+                    <p>Guilty Gear -Strive- (Tier 2)</p>
+                </div>
+            </div>
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2021.08.15 (2nd Place)</h3>
+                    <h4>EVO 2021 Online - Asia</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title fade-up">NEXT STAGE</h2>
+        <p class="fade-up" style="color:#aaa;">Sponsorship & Business Inquiries</p>
+        <a href="mailto:contact@daru-ino.com" class="btn fade-up">Contact Me</a>
+        <div class="fade-up" style="margin-top: 50px;">
+            <a href="https://www.twitch.tv/daruino" target="_blank" style="margin: 0 15px;">TWITCH</a>
+            <a href="https://www.youtube.com/c/daru_i-no" target="_blank" style="margin: 0 15px;">YOUTUBE</a>
+            <a href="https://twitter.com/daru_ino" target="_blank" style="margin: 0 15px;">TWITTER</a>
+        </div>
+    </section>
+
+    <script>
+        // 스크롤 감지 및 애니메이션
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up, .container').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // RSS 피드 로더
+        function loadRSSFeed() {
+            const RSS_URL = 'https://note.com/daru_ino/rss';
+            const PROXY_URL = 'https://api.allorigins.win/raw?url='; 
+            const feedContainer = document.getElementById('rss-feed-container');
+
+            fetch(PROXY_URL + encodeURIComponent(RSS_URL))
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(str => {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(str, "text/xml");
+                    const items = xmlDoc.querySelectorAll("item");
+                    feedContainer.innerHTML = ''; 
+
+                    for (let i = 0; i < Math.min(3, items.length); i++) {
+                        const item = items[i];
+                        const title = item.querySelector("title")?.textContent || "No Title";
+                        const link = item.querySelector("link")?.textContent || "#";
+                        let description = item.querySelector("description")?.textContent || "";
+                        description = description.replace(/<[^>]*>/g, '').trim(); 
+                        if (description.length > 150) description = description.substring(0, 150) + '...';
+                        
+                        const pubDateStr = item.querySelector("pubDate")?.textContent;
+                        let formattedDate = '';
+                        if (pubDateStr) {
+                            const date = new Date(pubDateStr);
+                            formattedDate = date.toLocaleDateString('ko-KR', {
+                                year: 'numeric', month: '2-digit', day: '2-digit'
+                            }).replace(/\./g, '.').slice(0, -1);
+                        }
+
+                        feedContainer.innerHTML += `
+                            <div class="note-item">
+                                <a href="${link}" target="_blank"><h4>${title}</h4></a>
+                                <p>${description}</p>
+                                <span class="note-date">${formattedDate}</span>
+                            </div>
+                        `;
+                    }
+                    if (items.length === 0) feedContainer.innerHTML = '<p class="note-loading">No posts found.</p>';
+                })
+                .catch(error => {
+                    console.error('Error fetching RSS:', error);
+                    feedContainer.innerHTML = '<p class="note-loading">Failed to load posts.</p>';
+                });
+        }
+        window.addEventListener('load', loadRSSFeed);
+    </script>
+</body>
+</html>
