@@ -1,0 +1,205 @@
+HTML
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARU_I-NO | Official Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 기본 설정 (Ver 2.0과 동일) --- */
+        :root {
+            --primary-red: #ff003c;
+            --bg-black: #0a0a0a;
+            --text-white: #ffffff;
+            --gray-dark: #1f1f1f;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        ul { list-style: none; }
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+        }
+        .logo {
+            font-family: 'Anton', sans-serif; font-size: 1.5rem; letter-spacing: 2px;
+            color: var(--primary-red); text-transform: uppercase;
+        }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            font-size: 0.9rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;
+        }
+        .nav-links a:hover { color: var(--primary-red); }
+        section {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; padding: 0 10%; position: relative;
+        }
+        .section-title {
+            font-family: 'Anton', sans-serif; font-size: 4rem; margin-bottom: 20px;
+            color: var(--primary-red); transform: skew(-10deg); text-align: center;
+        }
+
+        /* --- [수정됨] HERO 섹션: 배경 사진 밝기 조정 --- */
+        #home {
+            /* 사진이 더 잘 보이도록 앞부분의 투명도를 조절했습니다. 
+               기존 (0.5, 0.9) -> 변경 (0.2, 0.7)
+            */
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('image_0.png');
+            background-size: cover;
+            background-position: center; /* 사진 중앙 정렬 */
+            background-attachment: fixed;
+            align-items: flex-start;
+        }
+        .hero-title {
+            font-family: 'Anton', sans-serif; font-size: 8vw; line-height: 0.9;
+            text-transform: uppercase; color: transparent;
+            -webkit-text-stroke: 2px white; position: relative; z-index: 1;
+            opacity: 0; animation: slideIn 1.5s ease-out forwards;
+        }
+        .hero-title span { display: block; color: var(--primary-red); -webkit-text-stroke: 0; }
+        .hero-subtitle {
+            margin-top: 20px; font-size: 1.2rem; letter-spacing: 5px; text-transform: uppercase;
+            border-left: 3px solid var(--primary-red); padding-left: 15px;
+            opacity: 0; animation: fadeIn 1.5s ease-out 1s forwards; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* 가독성을 위한 그림자 추가 */
+        }
+
+        /* --- [수정됨] LIVE 섹션: 트위치 임베드 스타일 --- */
+        #live-stream {
+            background: var(--gray-dark);
+            min-height: auto; padding: 100px 10%; align-items: center;
+        }
+        .video-wrapper {
+            position: relative; padding-bottom: 56.25%; height: 0; width: 100%; max-width: 900px;
+            border: 3px solid var(--primary-red); box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
+            background: black; /* 로딩 중 검은 배경 */
+        }
+        .video-wrapper iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* --- 나머지 섹션 (Ver 2.0과 동일) --- */
+        #about { background-color: var(--bg-black); align-items: center; text-align: center; }
+        .about-text { font-size: 1.5rem; max-width: 800px; color: #ccc; line-height: 1.6; }
+        #career { background: var(--gray-dark); border-top: 5px solid var(--primary-red); }
+        .career-card {
+            background: black; padding: 40px; margin: 20px 0;
+            border-left: 10px solid var(--primary-red); transition: transform 0.3s;
+        }
+        .career-card:hover { transform: translateX(20px); }
+        .career-year { font-size: 1.2rem; color: var(--primary-red); font-weight: bold; }
+        .career-detail { font-size: 2.5rem; font-family: 'Anton', sans-serif; text-transform: uppercase; }
+        #contact { background: black; text-align: center; }
+        .btn {
+            display: inline-block; margin-top: 30px; padding: 15px 40px;
+            border: 2px solid var(--primary-red); color: white;
+            font-size: 1.2rem; font-weight: bold; text-transform: uppercase; transition: 0.3s;
+            cursor: pointer; background: transparent;
+        }
+        .btn:hover { background: var(--primary-red); color: black; }
+        @keyframes slideIn { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .fade-up { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 15vw; }
+            .section-title { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            #live-stream { padding: 50px 5%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">DARU_I-NO</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#live-stream">Live</a>
+            <a href="#about">About</a>
+            <a href="#career">Career</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home">
+        <h1 class="hero-title">
+            The World's Best<br>
+            <span>DARU_I-NO</span>
+        </h1>
+        <p class="hero-subtitle">Professional Guilty Gear Player | EVO Japan 2025 Champion</p>
+    </section>
+
+    <section id="live-stream">
+        <h2 class="section-title fade-up">LIVE ON AIR</h2>
+        <p class="fade-up" style="margin-bottom: 30px; color: #aaa;">Watch the Crimson Witch in action on Twitch.</p>
+        
+        <div class="video-wrapper fade-up">
+            <iframe
+                src="https://player.twitch.tv/?channel=daruino&parent=localhost&muted=true"
+                height="100%"
+                width="100%"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <a href="https://www.youtube.com/c/daru_i-no" target="_blank" class="btn fade-up">
+            VISIT YOUTUBE CHANNEL
+        </a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title fade-up">THE CRIMSON WITCH</h2>
+        <p class="about-text fade-up">
+            "예측 불가능한 셋업, 숨 막히는 압박."<br>
+            전 세계에서 이노(I-NO)를 가장 완벽하게 다루는 플레이어.<br>
+            단순한 승리를 넘어, 가장 스타일리시한 경기를 선사합니다.
+        </p>
+    </section>
+
+    <section id="career">
+        <h2 class="section-title fade-up">DOMINATION</h2>
+        <div class="career-card fade-up">
+            <span class="career-year">2025</span>
+            <div class="career-detail">EVO Japan Champion</div>
+            <p>Guilty Gear -Strive-</p>
+        </div>
+        <div class="career-card fade-up">
+            <span class="career-year">2023</span>
+            <div class="career-detail">EVO Top 3</div>
+            <p>Guilty Gear -Strive-</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title fade-up">NEXT STAGE</h2>
+        <p class="fade-up" style="color:#aaa;">Sponsorship & Business Inquiries</p>
+        <a href="mailto:contact@daru-ino.com" class="btn fade-up">Contact Me</a>
+        <div class="fade-up" style="margin-top: 50px;">
+            <a href="https://www.twitch.tv/daruino" target="_blank" style="margin: 0 15px;">TWITCH</a>
+            <a href="https://www.youtube.com/c/daru_i-no" target="_blank" style="margin: 0 15px;">YOUTUBE</a>
+            <a href="https://twitter.com/daru_ino" target="_blank" style="margin: 0 15px;">TWITTER</a>
+        </div>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
