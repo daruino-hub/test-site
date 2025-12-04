@@ -8,7 +8,7 @@ HTML
     <title>DARU_I-NO | Official Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 기본 설정 (Ver 2.0과 동일) --- */
+        /* --- (중략) 기본 설정은 이전과 동일합니다 --- */
         :root {
             --primary-red: #ff003c;
             --bg-black: #0a0a0a;
@@ -47,16 +47,17 @@ HTML
             color: var(--primary-red); transform: skew(-10deg); text-align: center;
         }
 
-        /* --- [수정됨] HERO 섹션: 배경 사진 밝기 조정 --- */
+        /* --- [수정된 부분] HERO 섹션: 타이틀 위치 변경 --- */
         #home {
-            /* 사진이 더 잘 보이도록 앞부분의 투명도를 조절했습니다. 
-               기존 (0.5, 0.9) -> 변경 (0.2, 0.7)
-            */
             background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('image_0.png');
             background-size: cover;
-            background-position: center; /* 사진 중앙 정렬 */
+            background-position: center;
             background-attachment: fixed;
-            align-items: flex-start;
+            
+            /* 핵심 변경: 컨텐츠를 아래쪽으로 정렬 */
+            justify-content: flex-end; 
+            /* 아래쪽 패딩 추가 */
+            padding-bottom: 80px; 
         }
         .hero-title {
             font-family: 'Anton', sans-serif; font-size: 8vw; line-height: 0.9;
@@ -68,24 +69,21 @@ HTML
         .hero-subtitle {
             margin-top: 20px; font-size: 1.2rem; letter-spacing: 5px; text-transform: uppercase;
             border-left: 3px solid var(--primary-red); padding-left: 15px;
-            opacity: 0; animation: fadeIn 1.5s ease-out 1s forwards; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* 가독성을 위한 그림자 추가 */
+            opacity: 0; animation: fadeIn 1.5s ease-out 1s forwards; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* --- [수정됨] LIVE 섹션: 트위치 임베드 스타일 --- */
+        /* --- 나머지 섹션 (이전과 동일) --- */
         #live-stream {
-            background: var(--gray-dark);
-            min-height: auto; padding: 100px 10%; align-items: center;
+            background: var(--gray-dark); min-height: auto; padding: 100px 10%; align-items: center;
         }
         .video-wrapper {
             position: relative; padding-bottom: 56.25%; height: 0; width: 100%; max-width: 900px;
             border: 3px solid var(--primary-red); box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
-            background: black; /* 로딩 중 검은 배경 */
+            background: black;
         }
         .video-wrapper iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
-
-        /* --- 나머지 섹션 (Ver 2.0과 동일) --- */
         #about { background-color: var(--bg-black); align-items: center; text-align: center; }
         .about-text { font-size: 1.5rem; max-width: 800px; color: #ccc; line-height: 1.6; }
         #career { background: var(--gray-dark); border-top: 5px solid var(--primary-red); }
@@ -202,6 +200,4 @@ HTML
         });
     </script>
 </body>
-
 </html>
-
