@@ -6,7 +6,7 @@
     <title>DARU_I-NO | Official Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 기본 설정 (Ver 5.0과 동일) --- */
+        /* --- 기본 설정 (Ver 6.0 기반) --- */
         :root {
             --primary-red: #ff003c;
             --bg-black: #0a0a0a;
@@ -23,7 +23,7 @@
         nav {
             position: fixed; top: 0; width: 100%; padding: 20px 50px;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            z-index: 1000; background: linear-gradient(to top, transparent, rgba(0,0,0,0.9)); /* 배경 수정 */
         }
         .logo {
             font-family: 'Anton', sans-serif; font-size: 1.5rem; letter-spacing: 2px;
@@ -43,7 +43,7 @@
             color: var(--primary-red); transform: skew(-10deg); text-align: center;
         }
 
-        /* --- HOME 섹션 (위치 조정 유지) --- */
+        /* --- HOME 섹션 --- */
         #home {
             background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('image_0.png');
             background-size: cover; background-position: center; background-attachment: fixed;
@@ -62,17 +62,16 @@
             opacity: 0; animation: fadeIn 1.5s ease-out 1s forwards; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* --- [수정됨] CAREER 섹션: 타임라인 디자인 --- */
+        /* --- CAREER 섹션: 타임라인 디자인 확장 (안전하게 재적용) --- */
         #career {
             background: var(--gray-dark); border-top: 5px solid var(--primary-red);
-            padding: 100px 10%; min-height: auto; /* 타임라인 내용에 맞게 높이 조정 */
+            padding: 100px 10%; min-height: auto;
         }
         .timeline {
             position: relative;
-            max-width: 1200px;
+            max-width: 1400px; /* 타임라인 컨테이너 너비 확장 */
             margin: 0 auto;
         }
-        /* 타임라인 중앙 세로선 */
         .timeline::after {
             content: '';
             position: absolute;
@@ -109,14 +108,16 @@
             left: -16px;
         }
         .content {
-            padding: 20px 30px;
+            padding: 25px 35px; /* 내부 패딩 확장 */
             background-color: black;
             position: relative;
             border-radius: 6px;
             border: 1px solid var(--gray-dark);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         .content h3 { color: var(--primary-red); margin-bottom: 5px; }
-        .content h4 { font-size: 1.8rem; font-family: 'Anton', sans-serif; margin-bottom: 5px; }
+        .content h4 { font-size: 1.8rem; font-family: 'Anton', sans-serif; margin-bottom: 5px; line-height: 1.2; }
+        .content p { font-size: 0.95rem; color: #ccc; }
 
         /* 모바일용 타임라인 조정 */
         @media screen and (max-width: 768px) {
@@ -125,6 +126,7 @@
             .container.right { left: 0%; }
             .container.left::after, .container.right::after { left: 15px; }
             .container.left { padding-right: 25px; }
+            .content h4 { font-size: 1.5rem; }
         }
 
         /* --- 나머지 섹션 (이전과 동일) --- */
@@ -147,12 +149,6 @@
         @keyframes slideIn { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .fade-up { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
-        @media (max-width: 768px) {
-            .hero-title { font-size: 15vw; }
-            .section-title { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            #live-stream { padding: 50px 5%; }
-        }
     </style>
 </head>
 <body>
@@ -208,56 +204,72 @@
         <div class="timeline">
             <div class="container left fade-up">
                 <div class="content">
-                    <h3>2025 (1st Place)</h3>
-                    <h4>EVO Japan 2025</h4>
+                    <h3>2025.11.02 (4th Place)</h3>
+                    <h4>SOOP Super Tournament 2025</h4>
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
             
             <div class="container right fade-up">
                 <div class="content">
-                    <h3>2024 (3rd Place)</h3>
-                    <h4>CEO 2024</h4>
+                    <h3>2025.09.27 (4th Place)</h3>
+                    <h4>AWT 2025-2026 Silver Ranking Event: Online Warrior</h4>
+                    <p>Guilty Gear -Strive- (Tier 3)</p>
+                </div>
+            </div>
+
+            <div class="container left fade-up">
+                <div class="content">
+                    <h3>2025.08.03 (5th - 6th Place)</h3>
+                    <h4>Evolution Championship Series 2025</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                </div>
+            </div>
+
+            <div class="container right fade-up">
+                <div class="content">
+                    <h3>2025.05.10 (1st Place)</h3>
+                    <h4>Evolution Championship Series: Japan 2025</h4>
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
 
             <div class="container left fade-up">
                 <div class="content">
-                    <h3>2023 (5th Place)</h3>
-                    <h4>EVO 2023</h4>
-                    <p>Guilty Gear -Strive- (S-Tier)</p>
+                    <h3>2025.09.23 (7th - 8th Place)</h3>
+                    <h4>ARC World Tour 2024 Finals</h4>
+                    <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
-            
+
             <div class="container right fade-up">
                 <div class="content">
-                    <h3>2023 (2nd Place)</h3>
-                    <h4>CEO 2023</h4>
+                    <h3>2025.01.19 (5th - 6th Place)</h3>
+                    <h4>Cygames Cup Special 2025</h4>
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
 
             <div class="container left fade-up">
                 <div class="content">
-                    <h3>2023 (4th Place)</h3>
-                    <h4>Combo Breaker 2023</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                    <h3>2024.11.24 (1st Place)</h3>
+                    <h4>South East Asia Major 2024</h4>
+                    <p>Guilty Gear -Strive- (Tier 2)</p>
                 </div>
             </div>
             
             <div class="container right fade-up">
                 <div class="content">
-                    <h3>2022 (2nd Place)</h3>
-                    <h4>CEO 2022</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
+                    <h3>2024.10.19 (17th - 24th Place)</h3>
+                    <h4>AWT 2024 Silver Series: East Asia</h4>
+                    <p>Guilty Gear -Strive- (Tier 3)</p>
                 </div>
             </div>
-            
+
             <div class="container left fade-up">
                 <div class="content">
-                    <h3>2022 (4th Place)</h3>
-                    <h4>Frosty Faustings XIV</h4>
+                    <h3>2024.08.31 (9th - 12th Place)</h3>
+                    <h4>ARCREVO in SENZAN 2024</h4>
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
