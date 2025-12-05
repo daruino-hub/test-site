@@ -6,7 +6,7 @@
     <title>DARU_I-NO | Official Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 기본 설정 --- */
+        /* --- 기본 설정 (Ver 10.0 유지) --- */
         :root {
             --primary-red: #ff003c;
             --bg-black: #0a0a0a;
@@ -18,9 +18,7 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        html {
-            background-color: var(--bg-black); /* 초고해상도에서 여백 검게 처리 */
-        }
+        html { background-color: var(--bg-black); }
 
         body {
             background-color: var(--bg-black); 
@@ -34,7 +32,7 @@
         a { text-decoration: none; color: white; transition: 0.3s; }
         ul { list-style: none; }
         
-        /* NAV: 상단 고정 및 중앙 정렬 */
+        /* NAV */
         nav {
             position: fixed; top: 0; width: 100%; max-width: 1920px; 
             padding: 20px 50px;
@@ -53,12 +51,12 @@
         }
         .nav-links a:hover { color: var(--primary-red); }
         
-        /* 섹션 공통 스타일 */
+        /* 섹션 공통 */
         section {
             min-height: 100vh; 
             display: flex; flex-direction: column;
             justify-content: center; 
-            padding: 100px 10%; /* 가시성 확보를 위한 충분한 패딩 */
+            padding: 100px 10%; 
             position: relative;
         }
         
@@ -67,7 +65,7 @@
             color: var(--primary-red); transform: skew(-10deg); text-align: center;
         }
 
-        /* --- HOME 섹션 --- */
+        /* HOME */
         #home {
             background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('image_0.png');
             background-size: cover; background-position: center; background-attachment: fixed;
@@ -79,7 +77,6 @@
             line-height: 0.9;
             text-transform: uppercase; color: transparent;
             -webkit-text-stroke: 2px white; position: relative; z-index: 1;
-            /* 애니메이션 안전장치: 기본 opacity는 0이지만 JS 로드 실패 대비는 아래 스크립트에서 처리 */
             opacity: 0; animation: slideIn 1.5s ease-out forwards;
         }
         .hero-title span { display: block; color: var(--primary-red); -webkit-text-stroke: 0; }
@@ -89,16 +86,26 @@
             opacity: 0; animation: fadeIn 1.5s ease-out 1s forwards; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* --- ABOUT & LIVE & NOTE 섹션 --- */
+        /* ABOUT, LIVE, NOTE 배경 */
         #about, #live-stream, #note { 
             background-color: var(--bg-black); 
             min-height: auto; 
             align-items: center; 
             text-align: center;
         }
-        #about .about-text { font-size: 1.5rem; max-width: 800px; color: #ccc; line-height: 1.6; }
 
-        /* LIVE 섹션 스타일 */
+        /* [수정됨] ABOUT 스타일 강화 */
+        .profile-list {
+            display: flex; gap: 20px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap;
+        }
+        .profile-item {
+            font-size: 1rem; color: #fff; border: 1px solid var(--primary-red);
+            padding: 8px 15px; border-radius: 20px; text-transform: uppercase;
+        }
+        .about-text { font-size: 1.2rem; max-width: 800px; color: #ccc; line-height: 1.8; margin-bottom: 20px;}
+        .about-highlight { color: var(--text-white); font-weight: bold; }
+
+        /* LIVE */
         .video-wrapper {
             position: relative; 
             padding-bottom: 56.25%; 
@@ -108,11 +115,9 @@
             border: 3px solid var(--primary-red); box-shadow: 0 0 20px rgba(255, 0, 60, 0.3); background: black;
             margin-bottom: 20px;
         }
-        .video-wrapper iframe { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* NOTE 섹션 스타일 */
+        /* NOTE */
         .note-container {
             display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1200px;
         }
@@ -141,15 +146,13 @@
         .note-item .note-date { display: block; color: #777; font-size: 0.8rem; margin-top: 5px; }
         .note-loading { color: #aaa; font-size: 1.2rem; }
 
-        /* --- CAREER 섹션 --- */
+        /* CAREER */
         #career {
             background: var(--gray-dark); 
             border-top: 5px solid var(--primary-red);
             padding: 100px 10%; min-height: auto;
         }
-        .timeline {
-            position: relative; max-width: 1400px; margin: 0 auto;
-        }
+        .timeline { position: relative; max-width: 1400px; margin: 0 auto; }
         .timeline::after {
             content: ''; position: absolute; width: 6px;
             background-color: var(--primary-red); top: 0; bottom: 0;
@@ -168,7 +171,6 @@
         }
         .container.right::after { left: -16px; }
 
-        /* 일반 콘텐츠 스타일 */
         .content {
             padding: 25px 35px; background-color: black;
             position: relative; border-radius: 6px; border: 1px solid var(--gray-dark);
@@ -178,32 +180,25 @@
         .content h4 { font-size: 1.8rem; font-family: 'Anton', sans-serif; margin-bottom: 5px; line-height: 1.2; }
         .content p { font-size: 0.95rem; color: #ccc; }
 
-        /* 1st Place 금색 박스 스타일 */
         .content.gold {
             background-color: var(--gold-bg); 
             border: 3px solid var(--gold-color); 
             box-shadow: 0 0 15px var(--gold-color);
         }
-        .content.gold h3, .content.gold h4 {
-            color: var(--gold-color); 
-        }
-        .content.gold p {
-            color: #ffe08d;
-        }
+        .content.gold h3, .content.gold h4 { color: var(--gold-color); }
+        .content.gold p { color: #ffe08d; }
 
-        /* --- 모바일 최적화 (768px 이하) --- */
+        /* 모바일 최적화 */
         @media screen and (max-width: 768px) {
             .hero-title { font-size: 15vw; }
             .section-title { font-size: 2.5rem; }
-            section { padding: 80px 5%; } /* 모바일 패딩 조정 */
+            section { padding: 80px 5%; } 
 
-            /* 네비게이션 숨김 (추후 햄버거 메뉴 필요) */
             .nav-links { display: none; }
             
             .note-item { width: 100%; max-width: 400px; } 
             .note-container { gap: 20px; }
 
-            /* 타임라인 단일 컬럼화 */
             .timeline::after { left: 31px; }
             .container { width: 100%; padding-left: 70px; padding-right: 25px; }
             .container.right { left: 0%; } 
@@ -214,7 +209,7 @@
             #contact a { margin: 0 10px; }
         }
         
-        /* --- CONTACT & 애니메이션 --- */
+        /* CONTACT & 애니메이션 */
         #contact { background: black; text-align: center; }
         .btn {
             display: inline-block; margin-top: 30px; padding: 15px 40px;
@@ -226,8 +221,6 @@
         
         @keyframes slideIn { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        /* [중요] 애니메이션 클래스 */
         .fade-up { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
     </style>
 </head>
@@ -253,11 +246,21 @@
     </section>
 
     <section id="about">
-        <h2 class="section-title fade-up">THE CRIMSON WITCH</h2>
+        <h2 class="section-title fade-up">PROFILE</h2>
+        
+        <div class="profile-list fade-up">
+            <span class="profile-item">Nov 26, 1985</span>
+            <span class="profile-item">Republic of Korea</span>
+            <span class="profile-item">Osaka, Japan</span>
+        </div>
+
         <p class="about-text fade-up">
-            "Unpredictable setups, breathtaking pressure."<br>
-            The world's most dominant I-NO player.<br>
-            I don't just win; I deliver the most stylish and impactful matches in Guilty Gear.
+            <span class="about-highlight">"Legendary I-NO Player & EVO Japan 2025 Champion"</span><br><br>
+            As a professional gamer for <span class="about-highlight">PARAGON</span>, I have established myself as the world's most dominant I-NO player in Guilty Gear -Strive-.
+            My journey doesn't stop at one game; I am actively expanding my competitive horizons into other fighting game titles.
+        </p>
+        <p class="about-text fade-up">
+            Beyond the arena, I serve as a <span class="about-highlight">Community Manager</span> and Marketer, bridging the gap between players and developers to foster a thriving fighting game community.
         </p>
     </section>
 
@@ -305,7 +308,7 @@
             </div>
             <div class="container right fade-up">
                 <div class="content">
-                    <h3>2025.08.03 (5th - 6th Place)</h3>
+                    <h3>2025.08.03 (5th Place)</h3>
                     <h4>Evolution Championship Series 2025</h4>
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
@@ -340,35 +343,6 @@
                 </div>
             </div>
             <div class="container left fade-up">
-                <div class="content">
-                    <h3>2024.08.31 (9th - 12th Place)</h3>
-                    <h4>ARCREVO in SENZAN 2024</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-            <div class="container right fade-up">
-                <div class="content">
-                    <h3>2024.07.20 (9th - 12th Place)</h3>
-                    <h4>Evolution Championship Series 2024</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-            <div class="container left fade-up">
-                <div class="content">
-                    <h3>2024.04.29 (13th - 16th Place)</h3>
-                    <h4>Evolution Championship Series: Japan 2024</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-            <div class="container right fade-up">
-                <div class="content">
-                    <h3>2024.03.22 (9th - 12th Place)</h3>
-                    <h4>ARC World Tour 2023 Finals</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-
-            <div class="container left fade-up">
                 <div class="content gold">
                     <h3>2023.10.01 (1st Place)</h3>
                     <h4>REV Major 2023</h4>
@@ -377,26 +351,19 @@
             </div>
             <div class="container right fade-up">
                 <div class="content">
-                    <h3>2023.09.24 (25th - 32nd Place)</h3>
-                    <h4>ARCREVO Japan 2023</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
-            <div class="container left fade-up">
-                <div class="content">
                     <h3>2023.08.06 (3rd Place)</h3>
                     <h4>Evolution Championship Series 2023</h4>
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
-            <div class="container right fade-up">
+            <div class="container left fade-up">
                 <div class="content gold">
                     <h3>2023.06.17 (1st Place)</h3>
-                    <h4>Playstation Tournaments FGC ARCADE: Road to EVO 2023 - APAC Finals</h4>
+                    <h4>Playstation Tournaments FGC ARCADE: Road to EVO 2023</h4>
                     <p>Guilty Gear -Strive- (Tier 3)</p>
                 </div>
             </div>
-            <div class="container left fade-up">
+            <div class="container right fade-up">
                 <div class="content">
                     <h3>2023.04.02 (4th Place)</h3>
                     <h4>Evolution Championship Series: Japan 2023</h4>
@@ -404,13 +371,6 @@
                 </div>
             </div>
 
-            <div class="container right fade-up">
-                <div class="content">
-                    <h3>2022.12.04 (9th - 12th Place)</h3>
-                    <h4>ARCREVO Japan 2022</h4>
-                    <p>Guilty Gear -Strive- (Tier 1)</p>
-                </div>
-            </div>
             <div class="container left fade-up">
                 <div class="content">
                     <h3>2022.11.13 (3rd Place)</h3>
@@ -425,6 +385,7 @@
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
+
             <div class="container left fade-up">
                 <div class="content">
                     <h3>2022.02.26 (5th - 6th Place)</h3>
@@ -432,7 +393,6 @@
                     <p>Guilty Gear -Strive- (Tier 1)</p>
                 </div>
             </div>
-
             <div class="container right fade-up">
                 <div class="content gold">
                     <h3>2021.12.16 (1st Place)</h3>
@@ -476,7 +436,7 @@
     </section>
 
     <script>
-        // 스크롤 감지 및 애니메이션
+        // 스크롤 감지
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
